@@ -25,6 +25,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
+  padding: 4px;
 }
 
 /* Fill remaining space in last row */
@@ -37,6 +38,7 @@ body {
   .gallery {
     --row-height: 240px;
     gap: 5px;
+    padding: 5px;
   }
 }
 
@@ -44,6 +46,7 @@ body {
   .gallery {
     --row-height: 300px;
     gap: 6px;
+    padding: 6px;
   }
 }
 
