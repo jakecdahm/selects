@@ -26,14 +26,23 @@
     return `${month}/${day}/${year}`;
   }
 
+  // Snap to common aspect ratios for consistent cropping
+  function snapAspectRatio(width, height) {
+    const raw = width / height;
+    // Common ratios: 3:2 (1.5), 2:3 (0.667), 4:3 (1.333), 3:4 (0.75), 1:1 (1.0)
+    if (raw > 1.2) return 1.5;      // Landscape -> 3:2
+    if (raw < 0.83) return 0.667;   // Portrait -> 2:3
+    return 1.0;                      // Square-ish -> 1:1
+  }
+
   // Create a gallery item
   function createGalleryItem(photo, index) {
     const item = document.createElement('div');
     item.className = 'gallery-item';
 
-    // Set aspect ratio for justified layout
-    const aspect = photo.width / photo.height;
-    item.style.setProperty('--aspect', aspect.toFixed(4));
+    // Set snapped aspect ratio for justified layout
+    const aspect = snapAspectRatio(photo.width, photo.height);
+    item.style.setProperty('--aspect', aspect);
 
     item.setAttribute('role', 'button');
     item.setAttribute('tabindex', '0');
