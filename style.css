@@ -19,11 +19,10 @@ body {
   min-height: 100vh;
 }
 
-/* Gallery - Grid Layout */
+/* Gallery - CSS Columns Masonry Layout */
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 4px;
+  column-count: 2;
+  column-gap: 4px;
   padding: 4px;
   max-width: 1800px;
   margin: 0 auto;
@@ -31,30 +30,39 @@ body {
 
 @media (min-width: 640px) {
   .gallery {
-    grid-template-columns: repeat(6, 1fr);
-    gap: 5px;
+    column-count: 3;
+    column-gap: 5px;
     padding: 5px;
   }
 }
 
 @media (min-width: 1024px) {
   .gallery {
-    grid-template-columns: repeat(8, 1fr);
-    gap: 6px;
-    padding: 8px;
+    column-count: 4;
+    column-gap: 6px;
+    padding: 6px;
   }
 }
 
 /* Gallery Item */
 .gallery-item {
+  break-inside: avoid;
   overflow: hidden;
   background-color: #eee;
   cursor: pointer;
-  grid-column: span 2;
+  margin-bottom: 4px;
 }
 
-.gallery-item.landscape {
-  grid-column: span 4;
+@media (min-width: 640px) {
+  .gallery-item {
+    margin-bottom: 5px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .gallery-item {
+    margin-bottom: 6px;
+  }
 }
 
 .gallery-item img {

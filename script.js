@@ -29,8 +29,7 @@
   // Create a gallery item
   function createGalleryItem(photo, index) {
     const item = document.createElement('div');
-    const isLandscape = photo.width > photo.height;
-    item.className = isLandscape ? 'gallery-item landscape' : 'gallery-item';
+    item.className = 'gallery-item';
     item.setAttribute('role', 'button');
     item.setAttribute('tabindex', '0');
     item.setAttribute('aria-label', `Photo from ${formatDate(photo.dateCaptured)}`);
