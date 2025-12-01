@@ -1,6 +1,14 @@
 {
   "photos": [
     {
+      "id": "20251111-5v2a3295",
+      "filename": "20251111-5v2a3295.webp",
+      "dateCaptured": "2025-11-11T22:05:19.000Z",
+      "dateAdded": "2025-12-01T02:02:20.631Z",
+      "width": 1334,
+      "height": 2000
+    },
+    {
       "id": "20251007-podcast-setup",
       "filename": "20251007-podcast-setup.webp",
       "dateCaptured": "2025-10-07T22:22:13.734Z",
