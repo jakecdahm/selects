@@ -26,6 +26,14 @@
     return `${month}/${day}/${year}`;
   }
 
+  // Format date for lightbox (May 30, 2025)
+  function formatDateLong(dateString) {
+    const date = new Date(dateString);
+    const months = ['January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'];
+    return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+  }
+
   // Create a gallery item
   function createGalleryItem(photo, index) {
     const item = document.createElement('div');
@@ -112,7 +120,7 @@
     lightboxImage.classList.remove('loaded');
     lightboxImage.src = `images/full/${photo.filename}`;
     lightboxImage.alt = `Photo from ${formatDate(photo.dateCaptured)}`;
-    lightboxCaption.textContent = formatDate(photo.dateCaptured);
+    lightboxCaption.textContent = formatDateLong(photo.dateCaptured);
 
     lightboxImage.onload = function () {
       lightboxImage.classList.add('loaded');
