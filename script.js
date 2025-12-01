@@ -31,10 +31,9 @@
     const item = document.createElement('div');
     item.className = 'gallery-item';
 
-    // Wide images (landscape) get wider column span
-    if (photo.width > photo.height) {
-      item.classList.add('wide');
-    }
+    // Set aspect ratio for justified layout
+    const aspect = photo.width / photo.height;
+    item.style.setProperty('--aspect', aspect.toFixed(4));
 
     item.setAttribute('role', 'button');
     item.setAttribute('tabindex', '0');

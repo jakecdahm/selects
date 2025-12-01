@@ -19,8 +19,9 @@ body {
   min-height: 100vh;
 }
 
-/* Gallery - Flexbox Layout (strict left-to-right order) */
+/* Gallery - Justified Flexbox Layout (like VSCO) */
 .gallery {
+  --row-height: 180px;
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
@@ -29,8 +30,15 @@ body {
   margin: 0 auto;
 }
 
+/* Fill remaining space in last row */
+.gallery::after {
+  content: "";
+  flex-grow: 999999;
+}
+
 @media (min-width: 640px) {
   .gallery {
+    --row-height: 240px;
     gap: 5px;
     padding: 5px;
   }
@@ -38,46 +46,26 @@ body {
 
 @media (min-width: 1024px) {
   .gallery {
+    --row-height: 300px;
     gap: 6px;
     padding: 6px;
   }
 }
 
-/* Gallery Item */
+/* Gallery Item - sized by aspect ratio */
 .gallery-item {
-  flex: 0 0 auto;
-  height: 200px;
+  flex-grow: calc(var(--aspect) * 100);
+  flex-basis: calc(var(--row-height) * var(--aspect));
   overflow: hidden;
   background-color: #eee;
   cursor: pointer;
 }
 
-.gallery-item.wide {
-  height: 200px;
-}
-
-@media (min-width: 640px) {
-  .gallery-item {
-    height: 280px;
-  }
-  .gallery-item.wide {
-    height: 280px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .gallery-item {
-    height: 350px;
-  }
-  .gallery-item.wide {
-    height: 350px;
-  }
-}
-
 .gallery-item img {
   display: block;
-  width: auto;
-  height: 100%;
+  width: 100%;
+  height: var(--row-height);
+  object-fit: cover;
   transition: transform 0.3s ease, opacity 0.3s ease;
   opacity: 0;
 }
