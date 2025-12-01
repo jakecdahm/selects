@@ -21,7 +21,7 @@ body {
 
 /* Gallery - Justified Flexbox Layout (like VSCO) */
 .gallery {
-  --row-height: 180px;
+  --row-height: 280px;
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
