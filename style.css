@@ -19,11 +19,10 @@ body {
   min-height: 100vh;
 }
 
-/* Gallery Grid */
+/* Gallery - Masonry Layout */
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
+  column-count: 2;
+  column-gap: 8px;
   padding: 8px;
   max-width: 1800px;
   margin: 0 auto;
@@ -31,41 +30,45 @@ body {
 
 @media (min-width: 640px) {
   .gallery {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    column-count: 3;
+    column-gap: 10px;
     padding: 10px;
   }
 }
 
 @media (min-width: 1024px) {
   .gallery {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+    column-count: 4;
+    column-gap: 12px;
     padding: 16px;
   }
 }
 
 /* Gallery Item */
 .gallery-item {
-  position: relative;
+  break-inside: avoid;
+  margin-bottom: 8px;
   overflow: hidden;
   background-color: #eee;
   cursor: pointer;
 }
 
-.gallery-item::before {
-  content: '';
-  display: block;
-  padding-top: 100%;
+@media (min-width: 640px) {
+  .gallery-item {
+    margin-bottom: 10px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .gallery-item {
+    margin-bottom: 12px;
+  }
 }
 
 .gallery-item img {
-  position: absolute;
-  top: 0;
-  left: 0;
+  display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   transition: transform 0.3s ease, opacity 0.3s ease;
   opacity: 0;
 }
