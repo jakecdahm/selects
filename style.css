@@ -64,8 +64,7 @@ body {
 .gallery-item img {
   display: block;
   width: 100%;
-  height: var(--row-height);
-  object-fit: cover;
+  height: auto;
   transition: transform 0.3s ease, opacity 0.3s ease;
   opacity: 0;
 }
