@@ -17,14 +17,13 @@
   let touchStartX = 0;
   let touchEndX = 0;
 
-  // Format date for display
+  // Format date for display (MM/DD/YYYY)
   function formatDate(dateString) {
     const date = new Date(dateString);
-    const months = [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'
-    ];
-    return `${months[date.getMonth()]} ${date.getFullYear()}`;
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${month}/${day}/${year}`;
   }
 
   // Create a gallery item
@@ -224,6 +223,9 @@
 
       const manifest = await response.json();
       photos = manifest.photos || [];
+
+      // Sort by date captured (newest first)
+      photos.sort((a, b) => new Date(b.dateCaptured) - new Date(a.dateCaptured));
 
       renderGallery();
     } catch (error) {
