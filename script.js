@@ -26,10 +26,32 @@
     return `${month}/${day}/${year}`;
   }
 
+  // Get current row height based on viewport
+  function getRowHeight() {
+    if (window.innerWidth >= 1024) return 6;
+    if (window.innerWidth >= 640) return 5;
+    return 4;
+  }
+
+  // Calculate row span for masonry grid
+  function calculateRowSpan(item, img) {
+    const rowHeight = getRowHeight();
+    const gap = rowHeight;
+    const height = img.getBoundingClientRect().height;
+    const rowSpan = Math.ceil((height + gap) / (rowHeight + gap));
+    item.style.gridRowEnd = `span ${rowSpan}`;
+  }
+
   // Create a gallery item
   function createGalleryItem(photo, index) {
     const item = document.createElement('div');
     item.className = 'gallery-item';
+
+    // Wide images (landscape) get wider column span
+    if (photo.width > photo.height) {
+      item.classList.add('wide');
+    }
+
     item.setAttribute('role', 'button');
     item.setAttribute('tabindex', '0');
     item.setAttribute('aria-label', `Photo from ${formatDate(photo.dateCaptured)}`);
@@ -42,6 +64,7 @@
 
     img.onload = function () {
       img.classList.add('loaded');
+      calculateRowSpan(item, img);
     };
 
     item.appendChild(img);
@@ -211,6 +234,21 @@
   // Touch events for swipe
   lightbox.addEventListener('touchstart', handleTouchStart, { passive: true });
   lightbox.addEventListener('touchend', handleTouchEnd, { passive: true });
+
+  // Recalculate row spans on resize
+  let resizeTimeout;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(function () {
+      const items = gallery.querySelectorAll('.gallery-item');
+      items.forEach(function (item) {
+        const img = item.querySelector('img');
+        if (img && img.complete) {
+          calculateRowSpan(item, img);
+        }
+      });
+    }, 100);
+  });
 
   // Load manifest and initialize
   async function init() {
