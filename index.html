@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selects</title>
+  <meta name="description" content="A curated collection of photographs">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="gallery" id="gallery">
+    <!-- Photos will be injected here -->
+  </main>
+
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close lightbox">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous photo">&larr;</button>
+    <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next photo">&rarr;</button>
+    <div class="lightbox-content">
+      <img class="lightbox-image" id="lightbox-image" src="" alt="">
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <div class="loading" id="loading">
+    <div class="loading-spinner"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
